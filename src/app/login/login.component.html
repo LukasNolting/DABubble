@@ -1,14 +1,24 @@
 <section>
-    <header>
-        <img src="" alt="">
-        <div [ngStyle]="{'opacity': loginPage ? 1 : 0 }">
-            <span>Neu bei DABubble?</span>
-            <a href="signUp">Konto erstellen</a>
-        </div>
-    </header>
-    <router-outlet></router-outlet>
-    <footer>
-        <a href="">Impressum</a>
-        <a href="">Datenschutz</a>
-    </footer>
+    <div class="afterIntro">
+        <header>
+            <img src="" alt="">
+            <div [ngStyle]="{'opacity': loginPage ? 1 : 0 }">
+                <span>Neu bei DABubble?</span>
+                <a href="signUp">Konto erstellen</a>
+            </div>
+        </header>
+        <router-outlet></router-outlet>
+        <footer>
+            <a href="">Impressum</a>
+            <a href="">Datenschutz</a>
+        </footer>
+    </div>
+
+    
+    <div class="container">
+        <img src="img/logo.svg">
+        <h1>DABubble</h1>
+    </div>
+
+
 </section>
