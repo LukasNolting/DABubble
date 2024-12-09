@@ -56,10 +56,11 @@ header {
 section {
     @include mixins.flexbox($direction: column);
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     max-width: 1980px;
     background-color: colors.$bg-color;
-    background: rgba(49, 58, 229, 1);
+    //background: rgba(49, 58, 229, 1);
+    background: linear-gradient(1.46deg, #313AE6 1.22%, #797EF3 98.76%);
     text-align: center;
     animation: changeBackground 1s 1s forwards;
 }
@@ -224,8 +225,8 @@ form {
 
 @keyframes changeBackground {
     from {
-        //background: linear-gradient(1.46deg, #313AE6 1.22%, #797EF3 98.76%);
-        background: rgba(49, 58, 229, 1);
+        background: linear-gradient(1.46deg, #313AE6 1.22%, #797EF3 98.76%);
+        //background: rgba(49, 58, 229, 1);
     }
 
     to {
