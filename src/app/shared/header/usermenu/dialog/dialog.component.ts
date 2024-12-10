@@ -1,32 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dialog',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss',
 })
 export class DialogComponent {
+  @Input() dialog: boolean = false;
+  @Output() dialogChange = new EventEmitter<boolean>();
   profileDialog: boolean = false;
   profileDialogEdit: boolean = false;
 
- dontCloseDialog(event: Event) {
-  event?.preventDefault();
-  event.stopPropagation();
-
-}
-
-  logout(){
-    console.log("logout");
+  dontCloseDialog(event: Event) {
+    event?.preventDefault();
+    event.stopPropagation();
   }
 
-  openProfile(){
-    console.log("profile");
+  logout() {
+    console.log('logout');
   }
 
-  openProfileEdit(){
-    console.log("profile edit");
+  openProfile() {
+    this.profileDialog = true;
+    this.dialog = false;
   }
-  
 
+  openProfileEdit() {
+    this.profileDialog = false;
+    this.profileDialogEdit = true;
+  }
+
+  saveProfile() {
+    this.profileDialog = false;
+    this.profileDialogEdit = false;
+    this.dialogChange.emit(this.dialog);
+  }
 }

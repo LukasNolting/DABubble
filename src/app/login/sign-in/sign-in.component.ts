@@ -19,11 +19,13 @@ export class SignInComponent {
 
   loginAsGuest() {
     this.router.navigateByUrl('board');
+    sessionStorage.setItem('token', 'Guest')
   }
 
   login(ngForm: NgForm) {
     if (ngForm.valid && ngForm.submitted) {
       console.log("form functional", this.loginData);
+      localStorage.setItem('token', 'User')
     }
     this.router.navigateByUrl('board');
   }

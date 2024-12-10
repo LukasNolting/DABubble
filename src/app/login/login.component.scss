@@ -33,12 +33,13 @@
 
 
 header {
-    position: absolute;
-    height: 100px;
-    width: 100%;
-    top: 0px;
+    position: fixed;
+    // height: 100px;
+    // width: 100%;
+    top: 95px;
+    right: 20px;
     @include mixins.flexbox($justify: space-between);
-    padding: 0px 30px;
+    // padding: 0px 30px;
 
     >div {
         @include mixins.flexbox($direction: column, $justify: start);
@@ -188,6 +189,7 @@ button {
 
 footer {
     position: absolute;
+    width: 100%;
     bottom: 30px;
     @include mixins.flexbox();
     gap: 40px;
@@ -197,7 +199,7 @@ footer {
         border-radius: 100px;
         @include mixins.border-marker($color: colors.$bg-color);
         &:hover {
-            border-color: colors.$white;
+            border-color: colors.$light-purple;
         }
     }
 }

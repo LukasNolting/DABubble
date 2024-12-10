@@ -1,10 +1,14 @@
 @use './../../../mixins.scss' as mixins;
 @use './../host.scss';
+@use './../login.component.scss';
 
 .separation {
     @include mixins.flexbox($direction:row);
     gap: 10px;
     width: 100%;
+    >span {
+        padding: 0px;
+    }
 }
 
 .line {

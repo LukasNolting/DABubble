@@ -1,4 +1,16 @@
-<div class="dialog-container" (click)="dontCloseDialog($event)">
+
+  <div
+    [ngClass]="{
+      'dialog-container': dialog || profileDialog || profileDialogEdit
+    }"
+    (click)="dontCloseDialog($event)"
+  >
+    @if (this.dialog) {
     <span (click)="openProfile()">Profil</span>
     <span (click)="logout()">Logout</span>
-</div>
+    } @else if (this.profileDialog) {
+    <span (click)="openProfileEdit()">Editieren</span>
+    } @else if (this.profileDialogEdit){
+    <span (click)="saveProfile()">Speichern</span>
+    }
+  </div>
