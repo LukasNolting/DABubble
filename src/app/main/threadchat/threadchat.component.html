@@ -1,6 +1,37 @@
 <div class="threadchat-container">
   <div class="threadchat__item1">
     <app-threadchat-header class="threadchat__header"></app-threadchat-header>
+    <div class="chatbox__mainthread-container">
+      <button class="chatbox__addemoji-container">
+        <div class="chatbox__addemoji__emoji-container">
+          <img src="/img/icons/addemoji.svg" alt="" />
+        </div>
+      </button>
+      <img
+        class="chatbox__msg-avatar"
+        src="img/avatars/avatar1.svg"
+        alt=""
+        width="70"
+        height="70"
+      />
+      <div class="chatbox__msg-item2">
+        <div class="chatbox__msg-info">
+          <h3 class="chatbox__msg-name">Noah Braun</h3>
+          <p class="chatbox__msg-time">14:25 Uhr</p>
+        </div>
+        <p class="chatbox__msg">Welche Version ist aktuell von Angular?</p>
+        <div class="chatbox__emojis-container">
+          <div class="chatbox__emojis">
+            <img src="/img/icons/emoji.svg" alt="" />
+            <span>1</span>
+          </div>
+          <div class="chatbox__addreaction-container">
+            <img src="/img/icons/add_reaction.svg" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatbox__threads-divider">2 Antworten</div>
     <app-chatbox class="threadchat__chatbox" />
   </div>
   <app-messagebox class="threadchat__messagebox"></app-messagebox>

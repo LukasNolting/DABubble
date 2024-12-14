@@ -1,6 +1,19 @@
 @use "../../../mixins.scss" as mixins;
 
 .mainchat-container{
-    @include mixins.flexbox(column, center, center, nowrap);
-    @include mixins.border-marker(red);
+    @include mixins.flexbox(column, space-between, space-between, nowrap);
+    height: 100%;
+}
+
+.mainchat__header{ 
+    width: 100%;
+}
+
+.mainchat__chatbox{
+    flex: 1;
+}
+
+.mainchat__messagebox{
+    padding: 25px 20px 40px 20px;
+
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Thread } from '../../../models/thread';
 
 @Component({
   selector: 'app-chatbox',
@@ -37,6 +38,42 @@ export class ChatboxComponent {
       name: 'Frederik Beck',
       msgTime: '15:06 Uhr',
       msg: 'Ja das ist es.',
+    },
+  ];
+
+  threads: {
+    id: string;
+    name: string;
+    description?: string;
+    createdBy: string;
+    userId: string;
+    avatarPath: string;
+    messages: string[];
+    messageDate: string;
+    messageTime: string;
+  }[] = [
+    {
+      id: 't1',
+      name: 'Noah Braun',
+      description: 'Welche Version ist aktuell von Angular?',
+      createdBy: 'Noah Braun',
+      userId: '11',
+      avatarPath: 'img/avatars/avatar4.svg',
+      messages: ['m1', 'm2'],
+      messageDate: '14.11.2024',
+      messageTime: '14:25 Uhr',
+    },
+    {
+      id: 't2',
+      name: 'Frederik Beck',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit odio efficitur lectus vestibulum, quis accumsan ante vulputate. Quisque tristique iaculis erat, eu faucibus lacus iaculis ac.',
+      createdBy: 'Frederik Beck',
+      userId: '3',
+      avatarPath: 'img/avatars/avatar5.svg',
+      messages: [],
+      messageDate: '13.12.2024',
+      messageTime: '15:06 Uhr',
     },
   ];
 }

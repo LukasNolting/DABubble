@@ -4,10 +4,9 @@ import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { addDoc, doc, setDoc } from '@angular/fire/firestore';
 
-
 @Component({
   selector: 'app-firestore-test',
-  standalone: true,   // <-- Add this line
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './firestore-test.component.html',
   styleUrls: ['./firestore-test.component.scss'],
@@ -15,7 +14,7 @@ import { addDoc, doc, setDoc } from '@angular/fire/firestore';
 export class FirestoreTestComponent implements OnInit {
   testData$: Observable<any[]> | undefined;
 
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: Firestore) {}
 
   ngOnInit(): void {
     this.testFirestoreConnection();
@@ -76,7 +75,4 @@ export class FirestoreTestComponent implements OnInit {
     }
 
   }
-
-
-
 }

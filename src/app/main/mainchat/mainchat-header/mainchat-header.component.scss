@@ -1,0 +1,97 @@
+@use "../../../../mixins.scss" as mixins;
+@use "../../../../colors.scss" as colors;
+
+.mainchat__header {
+  @include mixins.flexbox(row, space-between, center, nowrap);
+  width: 100%;
+  padding: 25px 45px;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
+}
+
+.mainchat__header-btn {
+  @include mixins.flexbox(row, flex-start, center, nowrap);
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 100px;
+  padding: 6px 10px;
+
+  &:hover {
+    background-color: colors.$bg-color;
+    color: colors.$purple3;
+  }
+
+  &:hover img {
+    filter: invert(34%) sepia(67%) saturate(4667%) hue-rotate(231deg)
+      brightness(101%) contrast(102%);
+  }
+}
+
+.mainchat__header-btn__hashtag {
+  margin-right: 5px;
+  padding: 5px;
+}
+
+.mainchat__header-btn__title {
+  margin-right: 10px;
+}
+
+.mainchat__header-btn__img-container {
+  @include mixins.flexbox(row, center, center);
+  padding: 11px 8px;
+}
+
+.mainchat__header__item2 {
+  @include mixins.flexbox(row, center, center, nowrap);
+}
+
+.mainchat__header-avatar {
+  border-radius: 30px;
+  border: 2px solid white;
+}
+
+.mainchat__header__avatar-container {
+  @include mixins.flexbox(row, center, center, nowrap);
+  gap: 10px;
+  padding: 3px 10px;
+  border-radius: 30px;
+
+  &:hover {
+    background-color: colors.$bg-color;
+  }
+
+  &:hover .mainchat__header__accounts-number {
+    font-weight: 700;
+    color: colors.$purple3;
+  }
+}
+.mainchat__header__avatar-box {
+  @include mixins.flexbox(row, center, center, nowrap);
+}
+
+.mainchat__header__avatar-box > * + * {
+  margin-left: -10px;
+}
+
+.mainchat__header__accounts-number {
+  font-weight: 600;
+}
+
+.mainchat__header__addperson-img-container {
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: colors.$bg-color;
+  border-radius: 20px;
+  padding: 8px;
+
+  &:hover .mainchat__header__addperson-img {
+    filter: invert(32%) sepia(53%) saturate(5328%) hue-rotate(231deg)
+      brightness(99%) contrast(91%);
+  }
+}
+
+.mainchat__header__addperson-img {
+  display: block;
+}
