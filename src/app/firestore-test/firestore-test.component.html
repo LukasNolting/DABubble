@@ -1,12 +1,32 @@
 <div>
-    <h1>Firestore Test</h1>
-    <ul>
-      <li *ngFor="let item of testData$ | async">
-        {{ item | json }}
-      </li>
-    </ul>
-  </div>
+  <h1>Firestore Test</h1>
+  <ul>
+    <li *ngFor="let item of testData$ | async">
+      {{ item | json }}
+    </li>
+  </ul>
+</div>
 
+<button (click)="writeData()">Daten hinzufügen</button>
 
-  
-  <button (click)="writeData()">Daten hinzufügen</button>
+<br />
+
+<input type="text" placeholder="Email" [(ngModel)]="email" />
+<input type="text" placeholder="Passwort" [(ngModel)]="password" />
+<button (click)="register()">Registrieren</button>
+<span>{{ userId }}</span>
+
+<br />
+
+<input type="text" placeholder="Email" [(ngModel)]="loginEmail" />
+<input type="text" placeholder="Passwort" [(ngModel)]="loginPassword" />
+<button (click)="login()">Login</button>
+<p>{{ userData?.email }}</p>
+<p>{{ userData?.name }}</p>
+<p>{{ userData?.status }}</p>
+<p>{{ userData?.userId }}</p>
+<span style="color: red">{{ errorLogin }}</span>
+
+<br>
+
+<button (click)="guestLogin()">GastLogin</button>
