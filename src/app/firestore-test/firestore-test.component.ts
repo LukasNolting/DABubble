@@ -33,23 +33,48 @@ export class FirestoreTestComponent implements OnInit {
 
   writeData(): void {
     const testCollection = collection(this.firestore, 'users'); // Ziel-Sammlung
-    const localData = {
-      "name": "Max Mustermann",
-      "email": "email@email.com",
+
+    const localData = [{
+      "name": "Otto Peters",
+      "email": "otto@peters.de",
+      "password": "password123",
       "status": false,
       "avatarURL": "avatarURL",
-      "userId": "1",
+      "userId": 1,
       "channels": ["Channel1"],
       "privateNoteRef": "???"
+    }, {
+      "name": "Max Mustermann",
+      "email": "max@mustermann.de",
+      "password": "password123",
+      "status": false,
+      "avatarURL": "avatarURL",
+      "userId": 2,
+      "channels": ["Channel1"],
+      "privateNoteRef": "???"
+    }, {
+      "name": "Ralf Mongolo",
+      "email": "ralf@mongolo.de",
+      "password": "password123",
+      "status": false,
+      "avatarURL": "avatarURL",
+      "userId": 3,
+      "channels": ["Channel1"],
+      "privateNoteRef": "???"
+    }]
+
+    for (let i = 0; i < localData.length; i++) {
+
+      addDoc(testCollection, localData[i])
+        .then((docRef) => {
+          console.log('Daten erfolgreich hinzugefügt mit ID:', docRef.id);
+        })
+        .catch((error) => {
+          console.error('Fehler beim Hinzufügen der Daten:', error);
+        });
+
     }
 
-    addDoc(testCollection, localData)
-      .then((docRef) => {
-        console.log('Daten erfolgreich hinzugefügt mit ID:', docRef.id);
-      })
-      .catch((error) => {
-        console.error('Fehler beim Hinzufügen der Daten:', error);
-      });
   }
 
 
