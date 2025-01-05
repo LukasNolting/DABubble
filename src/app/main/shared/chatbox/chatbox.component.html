@@ -59,9 +59,9 @@
   >
     @if(emojiPickerOpened && emojiPickerOpenedFor === message.docId){
     <div class="emoji-picker__wrapper emoji-picker__wrapper-20pxright" (click)="onEmojiPickerClick($event)">
-      <app-emoji-picker
+      <!-- <app-emoji-picker
         (selectEmoji)="addReaction(message.docId, message.createdBy, $event, true)"
-      />
+      /> -->
     </div>
     }
     <button
@@ -203,9 +203,9 @@
     }}</span>
     @if(emojiPickerOpened && emojiPickerOpenedFor === message.docId){
     <div class="emoji-picker__wrapper" (click)="onEmojiPickerClick($event)">
-      <app-emoji-picker
+      <!-- <app-emoji-picker
         (selectEmoji)="addReaction(message.docId, message.createdBy!, $event, false)"
-      />
+      /> -->
     </div>
     }
   </div>

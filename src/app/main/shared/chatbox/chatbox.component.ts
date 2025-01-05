@@ -233,7 +233,7 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   @HostListener('document:click', ['$event'])
-  onDocumentClick(event: Event): void {
+  onDocumentClick(event: MouseEvent): void {
     if (this.emojiPickerOpened) {
       this.emojiPickerOpened = false;
       console.log(this.emojiPickerOpened);

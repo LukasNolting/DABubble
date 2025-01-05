@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { EmojiPicker } from "ngx-easy-emoji-picker";
 
 @Component({
   selector: 'app-emoji-picker',
   standalone: true,
-  imports: [EmojiPicker],
+  imports: [],
   templateUrl: './emoji-picker.component.html',
   styleUrl: './emoji-picker.component.scss'
 })

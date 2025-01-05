@@ -31,6 +31,7 @@
   img {
     display: block;
     padding: 10px;
+    cursor: pointer;
   }
 
   div {
@@ -38,6 +39,7 @@
     gap: 5px;
   }
 }
+
 
 .messagebox-wrapper {
   position: relative;
@@ -53,6 +55,6 @@
 
 .emoji-picker__wrapper{
   position: absolute;
-  bottom: 130px;
-  left: 35px;
+  bottom: 154px;
+  left: 0;
 }
