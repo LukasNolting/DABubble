@@ -12,7 +12,7 @@
   <div class="chatbox__mainthread-container">
     <button
       class="chatbox__addemoji-container"
-      (click)="toggleEmojiPicker('fallback')"
+      (click)="toggleEmojiPicker('fallback')" 
       (click)="preventEmojiPickerClose($event)"
     >
       <div class="chatbox__addemoji__emoji-container">
@@ -59,6 +59,7 @@
   >
     @if(emojiPickerOpened && emojiPickerOpenedFor === message.docId){
     <div class="emoji-picker__wrapper emoji-picker__wrapper-20pxright" (click)="preventEmojiPickerClose($event)">
+      <app-emoji-picker (emoji)="addEmoji(message.docId, message.createdBy, $event, true)" />
       <!-- <app-emoji-picker
         (selectEmoji)="addReaction(message.docId, message.createdBy, $event, true)"
       /> -->
@@ -204,9 +205,6 @@
     @if(emojiPickerOpened && emojiPickerOpenedFor === message.docId){
     <div class="emoji-picker__wrapper" (click)="preventEmojiPickerClose($event)">
       <app-emoji-picker (emoji)="addEmoji(message.docId, message.createdBy!, $event, false)"/>
-      <!-- <app-emoji-picker
-        (selectEmoji)="addReaction(message.docId, message.createdBy!, $event, false)"
-      /> -->
     </div>
     }
   </div>

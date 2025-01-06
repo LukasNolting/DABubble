@@ -217,10 +217,6 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  onEmojiSelected(emoji: string) {
-    this.selectedEmoji = emoji;
-  }
-
   toggleEmojiPicker(messageId: string) {
     this.emojiPickerOpened = !this.emojiPickerOpened;
     if (this.emojiPickerOpened) {
