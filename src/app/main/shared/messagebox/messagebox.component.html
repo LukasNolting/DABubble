@@ -11,8 +11,9 @@
   <div class="messagebox__icons-container">
     <div>
       @if(emojiPickerOpened){
+        
       <div class="emoji-picker__wrapper" (click)="onEmojiPickerClick($event)">
-        <!-- <app-emoji-picker (selectEmoji)="addEmoji($event)" /> -->
+        <app-emoji-picker (emoji)="addEmoji($event)"/>
       </div>
       }
       <img

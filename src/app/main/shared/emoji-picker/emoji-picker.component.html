@@ -1,17 +1,10 @@
-<!-- <div class="emoji-picker__container">
-  <h3 class="container-title">Kategorien</h3>
-  <emoji-picker
-    (selectedEmoji)="onSelectEmoji($event)"
-    width="300px"
-    height="200px"
-    [showCategories]="true"
-    selectedCategory="smileys and people"
-    categoriesPosition="top"
-  >
-  </emoji-picker>
-  <h3>Favoriten</h3>
-  <div class="fav-emojis-container">
-    <span>😎</span><span>😄</span><span>😃</span><span>😆</span><span>😉</span
-    ><span>😊</span><span>😋</span>
-  </div>
-</div> -->
+<emoji-mart
+  [style]="{ position: 'absolute', bottom: '20px', right: '20px' }"
+  (emojiClick)="onSelectEmoji($event)"
+  title="Pick your emoji…"
+  emoji="point_up"
+></emoji-mart>
+
+<!-- <ngx-emoji [emoji]="{ id: 'santa', skin: 3 }" size=""></ngx-emoji>
+<ngx-emoji emoji=":santa::skin-tone-3:" size="16"></ngx-emoji>
+<ngx-emoji emoji="santa" set="emojione" size="16"></ngx-emoji> -->

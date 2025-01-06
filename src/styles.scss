@@ -1,5 +1,6 @@
 @use './mixins.scss' as mixins;
 @use './colors.scss' as colors;
+@import '@ctrl/ngx-emoji-mart/picker';
 
 * {
     margin: 0;
