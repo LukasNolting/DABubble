@@ -31,7 +31,9 @@
   img {
     display: block;
     padding: 10px;
-    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   div {

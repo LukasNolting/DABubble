@@ -58,25 +58,36 @@ img {
   border-radius: 30px;
   box-shadow: -2px -2px 10px 0px rgba(0, 0, 0, 0.18);
   outline: 1px solid colors.$purple2;
+  background-color: colors.$white;
 }
 
 .feedback-container {
   width: 100%;
   z-index: 4;
+  margin: 30px 0;
+  max-height: 400px;
+  overflow-y: scroll;
   color: #f50000;
+  gap: 8px;
+  padding: 2px 20px;
   @include mixins.flexbox(row, center, center);
   max-width: 1440px;
-  gap: 16px;
+  border-radius: 30px;
 
   .feedback-box {
     opacity: 1;
-    background-color: colors.$white;
     color: colors.$grey;
     box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid colors.$light-purple;
+    border-radius: 16px;
     width: 100%;
     z-index: 4;
-    padding: 24px;
-    border-radius: 30px;
+    cursor: pointer;
     @include mixins.flexbox(column, flex-start, flex-start);
   }
 }
+
+::-webkit-scrollbar {
+    width: 5px !important;
+  }

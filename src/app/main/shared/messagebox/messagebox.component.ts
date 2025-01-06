@@ -167,4 +167,16 @@ export class MessageboxComponent implements OnInit, OnDestroy {
   addEmoji(emoji: string){
     this.messageContent += emoji;
   }
+
+  checkKeyStatus(event: KeyboardEvent, chat: string): void {
+    if (event.shiftKey && event.keyCode == 13) {
+      event.preventDefault();
+    } else if (event.keyCode == 13) {
+      if (chat === 'mainchat') {
+        this.sendMessage()
+      } else if(chat === 'threadchat') {
+        this.sendThreadMessage();
+      }
+    }
+  }
 }

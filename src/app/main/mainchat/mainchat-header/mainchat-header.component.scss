@@ -11,6 +11,7 @@
 
 .mainchat__header-btn {
   @include mixins.flexbox(row, flex-start, center, nowrap);
+  position: relative;
   font-size: 1.5rem;
   font-weight: 700;
   background: none;
@@ -86,6 +87,8 @@
   background-color: colors.$bg-color;
   border-radius: 20px;
   padding: 8px;
+  position: relative;
+
 
   &:hover .mainchat__header__addperson-img {
     filter: invert(32%) sepia(53%) saturate(5328%) hue-rotate(231deg)
@@ -96,3 +99,42 @@
 .mainchat__header__addperson-img {
   display: block;
 }
+
+.menuDialog{
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  z-index: 1000;
+  cursor: default;
+}
+
+.membersDialog {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  z-index: 1000;
+  cursor: default;
+}
+
+.channelDialog {
+  position: absolute;
+  width: 400px;
+  top: 50px;
+  left: 0px;
+  z-index: 1000;
+  cursor: default;
+}
+
+.dialog-background {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  cursor: default;
+  background-color: colors.$light-grey;
+  z-index: 555;
+}
+

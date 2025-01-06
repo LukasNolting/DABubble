@@ -38,9 +38,7 @@
                 <input minlength="5" #password="ngModel" [(ngModel)]="loginData.password" type="password"
                     name="password" placeholder="Passwort" required>
             </div>
-            <span class="warning" [ngStyle]="{'opacity': !password.valid && password.touched ? 1 : 0}">Falsches
-                Passwort
-                oder E-Mail.. Bitte noch einmal versuchen.</span>
+            <span class="warning" [ngStyle]="{opacity: (loginError == 'Falsches Passwort oder E-Mail.. Bitte noch einmal versuchen.') || (!password.valid && password.touched) ? 1 : 0}">{{ loginError }}</span>
             <div class="link">
                 <a routerLink="forget">Passwort vergessen?</a>
             </div>

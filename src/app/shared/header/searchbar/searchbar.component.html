@@ -5,16 +5,33 @@
     [(ngModel)]="searchText"
     (input)="onInputChange()"
   />
-  <button><img src="img/icons/search.svg" alt="" /></button>
+  <button><img src="img/icons/search.svg" alt="Suche" /></button>
 </div>
 
-@if (isSearchActive) {
-<div class class="feedback-wrapper">
+@if (isSearchActive && searchResults.length > 0) {
+<div class="feedback-wrapper">
+  <div class="feedback-container">
+    <div class="feedback-box" *ngFor="let result of searchResults">
+      <span>{{ result.creatorName }}</span>
+      <span>{{ result.message }}</span>
+      <span>{{ result.timestamp.seconds | timestampToDate }}</span>
+    </div>
+  </div>
+</div>
+} @else if (isSearchActive && searchResults.length === 0) {
+<div class="feedback-wrapper">
   <div class="feedback-container">
     <div class="feedback-box">
-      <span>Test-Suchergebnis</span>
-      <span>Test-Suchergebnis</span>
-      <span>Test-Suchergebnis</span>
+      <span>Keine Ergebnisse gefunden</span>
+    </div>
+  </div>
+</div>
+}
+@else if (isSearchTouched){
+<div class="feedback-wrapper">
+  <div class="feedback-container">
+    <div class="feedback-box">
+      <span>Bitte gib mindestens 4 Zeichen ein</span>
     </div>
   </div>
 </div>

@@ -1,0 +1,96 @@
+@use '../../../mixins.scss' as mixins;
+@use '../../../colors.scss' as colors;
+
+.container {
+    padding: 30px;
+    min-height: 700px;
+    min-width: 500px;
+    @include mixins.flexbox($direction: column, $justify: space-around);
+    >div {
+        width: 100%;
+    }
+}
+
+.headline {
+    h2 {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32.74px;
+    }
+    @include mixins.flexbox($justify: space-between);
+    svg {
+        width: 24px;
+        height: 25px;
+        padding: 2px;
+        &:hover {
+            cursor: pointer;
+            background-color: colors.$bg-color;
+            border-radius: 50%;
+            path {
+                fill: colors.$purple3;
+            }
+        }
+    }
+}
+
+.imageCont {
+    @include mixins.flexbox($justify: center);
+    img {
+        height: 200px;
+        width: 200px;
+        border-radius: 100%;
+    }
+}
+
+.nameCont {
+    span {
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 43.65px;
+    }
+}
+
+.status {
+    @include mixins.flexbox(row, flex-start, center, wrap);
+    gap: 15px;
+    div {
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+    }
+    span {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 27.28px;
+    }
+}
+
+.mailCont {
+    @include mixins.flexbox($direction: column, $align: start);
+    gap: 15px;
+    >div {
+        @include mixins.flexbox($justify: start);
+        gap: 10px;
+    }
+    span {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 27.28px;
+    }
+    p {
+        font-size: 18px;
+        line-height: 24.55px;
+        padding-left: 45px;
+        color: rgba(19, 129, 255, 1);
+    }
+}
+
+.buttonCont {
+    @include mixins.flexbox();
+}
+
+button {
+    @include mixins.flexbox();
+    width: fit-content;
+    gap: 10px;
+}

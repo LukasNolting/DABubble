@@ -1,0 +1,113 @@
+@if (active == 'showPeople') {
+    <div class="background" (click)="onClose()">
+        <div class="container" (click)="stopPropagation($event)">
+            <div class="headline">
+                <h2>Mitglieder</h2>
+                <div class="closeBtn" (click)="onClose()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="mask0_103447_3506" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                        <rect width="24" height="24" fill="#D9D9D9"/>
+                        </mask>
+                        <g mask="url(#mask0_103447_3506)">
+                        <path d="M12 13.4L7.09999 18.3C6.91665 18.4833 6.68332 18.575 6.39999 18.575C6.11665 18.575 5.88332 18.4833 5.69999 18.3C5.51665 18.1167 5.42499 17.8833 5.42499 17.6C5.42499 17.3167 5.51665 17.0833 5.69999 16.9L10.6 12L5.69999 7.09999C5.51665 6.91665 5.42499 6.68332 5.42499 6.39999C5.42499 6.11665 5.51665 5.88332 5.69999 5.69999C5.88332 5.51665 6.11665 5.42499 6.39999 5.42499C6.68332 5.42499 6.91665 5.51665 7.09999 5.69999L12 10.6L16.9 5.69999C17.0833 5.51665 17.3167 5.42499 17.6 5.42499C17.8833 5.42499 18.1167 5.51665 18.3 5.69999C18.4833 5.88332 18.575 6.11665 18.575 6.39999C18.575 6.68332 18.4833 6.91665 18.3 7.09999L13.4 12L18.3 16.9C18.4833 17.0833 18.575 17.3167 18.575 17.6C18.575 17.8833 18.4833 18.1167 18.3 18.3C18.1167 18.4833 17.8833 18.575 17.6 18.575C17.3167 18.575 17.0833 18.4833 16.9 18.3L12 13.4Z" fill="black"/>
+                        </g>
+                    </svg> 
+                </div>                   
+            </div>
+            <div class="members">
+                <div class="userCont" *ngFor="let member of members">
+                    <div class="userCard" (click)="openProfile(member.userId)">
+                        <img src="{{ member.photoURL }}" alt="">
+                        <span>{{ member.name }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="buttonCont">
+                <div class="addButton">
+                    <img class="mainchat__header__addperson-img" src="img/icons/person_add.svg" alt=""/>
+                    <span>Mitglieder hinzufügen</span>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (active == 'addPeople') {
+    <div class="background" (click)="onClose()">
+        <div class="container addPeopleCont" (click)="stopPropagation($event)">
+            <div class="headline">
+                <h2>Leute hinzufügen</h2>
+                <div class="closeBtn" (click)="onClose()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="mask0_103447_3506" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                        <rect width="24" height="24" fill="#D9D9D9"/>
+                        </mask>
+                        <g mask="url(#mask0_103447_3506)">
+                        <path d="M12 13.4L7.09999 18.3C6.91665 18.4833 6.68332 18.575 6.39999 18.575C6.11665 18.575 5.88332 18.4833 5.69999 18.3C5.51665 18.1167 5.42499 17.8833 5.42499 17.6C5.42499 17.3167 5.51665 17.0833 5.69999 16.9L10.6 12L5.69999 7.09999C5.51665 6.91665 5.42499 6.68332 5.42499 6.39999C5.42499 6.11665 5.51665 5.88332 5.69999 5.69999C5.88332 5.51665 6.11665 5.42499 6.39999 5.42499C6.68332 5.42499 6.91665 5.51665 7.09999 5.69999L12 10.6L16.9 5.69999C17.0833 5.51665 17.3167 5.42499 17.6 5.42499C17.8833 5.42499 18.1167 5.51665 18.3 5.69999C18.4833 5.88332 18.575 6.11665 18.575 6.39999C18.575 6.68332 18.4833 6.91665 18.3 7.09999L13.4 12L18.3 16.9C18.4833 17.0833 18.575 17.3167 18.575 17.6C18.575 17.8833 18.4833 18.1167 18.3 18.3C18.1167 18.4833 17.8833 18.575 17.6 18.575C17.3167 18.575 17.0833 18.4833 16.9 18.3L12 13.4Z" fill="black"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <p># {{ channelName }}</p>
+            <form (ngSubmit)="addUser(addForm)" #addForm="ngForm">
+                <input #name="ngModel" [(ngModel)]="name" type="text" minlength="3" placeholder="Name eingeben">
+                <div class="buttonCont">
+                    <button [disabled]="!name.valid" class="default save">Hinzufügen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+@if (profileOpen) {
+    <div class="background" (click)="closeProfile()">
+        <div class="container profileCont">
+            <div class="headline">
+                <h2>Profil</h2>
+                <div class="closeBtn" (click)="closeProfile()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="mask0_103447_3506" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                        <rect width="24" height="24" fill="#D9D9D9"/>
+                        </mask>
+                        <g mask="url(#mask0_103447_3506)">
+                        <path d="M12 13.4L7.09999 18.3C6.91665 18.4833 6.68332 18.575 6.39999 18.575C6.11665 18.575 5.88332 18.4833 5.69999 18.3C5.51665 18.1167 5.42499 17.8833 5.42499 17.6C5.42499 17.3167 5.51665 17.0833 5.69999 16.9L10.6 12L5.69999 7.09999C5.51665 6.91665 5.42499 6.68332 5.42499 6.39999C5.42499 6.11665 5.51665 5.88332 5.69999 5.69999C5.88332 5.51665 6.11665 5.42499 6.39999 5.42499C6.68332 5.42499 6.91665 5.51665 7.09999 5.69999L12 10.6L16.9 5.69999C17.0833 5.51665 17.3167 5.42499 17.6 5.42499C17.8833 5.42499 18.1167 5.51665 18.3 5.69999C18.4833 5.88332 18.575 6.11665 18.575 6.39999C18.575 6.68332 18.4833 6.91665 18.3 7.09999L13.4 12L18.3 16.9C18.4833 17.0833 18.575 17.3167 18.575 17.6C18.575 17.8833 18.4833 18.1167 18.3 18.3C18.1167 18.4833 17.8833 18.575 17.6 18.575C17.3167 18.575 17.0833 18.4833 16.9 18.3L12 13.4Z" fill="black"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div class="imageCont">
+                <img [src]="activeMember.avatar" alt="">
+            </div>
+            <div class="nameCont">
+                <span>{{ activeMember.name }}</span>
+                <p class="status" [ngClass]="activeMember.status ? 'active' : 'disabled' ">{{ activeMember.status }}</p>
+            </div>
+            <div class="mailCont">
+                <div>
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="mask0_103515_3701" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="30" height="30">
+                        <rect width="30" height="30" fill="#D9D9D9"/>
+                        </mask>
+                        <g mask="url(#mask0_103515_3701)">
+                        <path d="M5 25C4.3125 25 3.72417 24.7554 3.235 24.2663C2.745 23.7763 2.5 23.1875 2.5 22.5V7.5C2.5 6.8125 2.745 6.22417 3.235 5.735C3.72417 5.245 4.3125 5 5 5H25C25.6875 5 26.2763 5.245 26.7663 5.735C27.2554 6.22417 27.5 6.8125 27.5 7.5V22.5C27.5 23.1875 27.2554 23.7763 26.7663 24.2663C26.2763 24.7554 25.6875 25 25 25H5ZM25 10L15.6562 15.8438C15.5521 15.9062 15.4425 15.9529 15.3275 15.9837C15.2133 16.0154 15.1042 16.0312 15 16.0312C14.8958 16.0312 14.7867 16.0154 14.6725 15.9837C14.5575 15.9529 14.4479 15.9062 14.3438 15.8438L5 10V22.5H25V10ZM15 13.75L25 7.5H5L15 13.75ZM5 10.3125V8.46875V8.5V8.48375V10.3125Z" fill="black"/>
+                        </g>
+                    </svg>    
+                    <span>E-Mail-Adresse</span>
+                </div>
+                <p>{{ activeMember.email }}</p>
+            </div>
+            <button class="default save">
+                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <mask id="mask0_103515_8323" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="25">
+                    <rect y="0.5" width="24" height="24" fill="#D9D9D9"/>
+                    </mask>
+                    <g mask="url(#mask0_103515_8323)">
+                    <path d="M20.3 20.8L18 18.5H4C3.45 18.5 2.97933 18.3043 2.588 17.913C2.196 17.521 2 17.05 2 16.5V4.5C2 3.95 2.196 3.479 2.588 3.087C2.97933 2.69567 3.45 2.5 4 2.5H20C20.55 2.5 21.021 2.69567 21.413 3.087C21.8043 3.479 22 3.95 22 4.5V20.075C22 20.525 21.796 20.8373 21.388 21.012C20.9793 21.1873 20.6167 21.1167 20.3 20.8ZM4 4.5V16.5H18.825L20 17.675V4.5H4Z" fill="white"/>
+                    </g>
+                </svg>    
+                Nachricht
+            </button>
+            
+        </div>
+    </div>
+}

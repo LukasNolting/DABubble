@@ -1,0 +1,208 @@
+@use '../../../../mixins.scss' as mixins;
+@use '../../../../colors.scss' as colors;
+@use '../../../../button.scss' as buttons;
+
+*{
+    font-size: 18px;
+}
+
+.background {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba($color: gray, $alpha: 0.4);
+}
+
+.container {
+    width: 415px;
+    height: auto;
+    max-height: 411px;
+    background-color: white;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    @include mixins.flexbox();
+    position: absolute;
+    right: 140px;
+    top: 210px;
+    padding: 20px;
+
+    >div {
+        width: 100%;
+    }
+    .headline {
+        h2 {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 32.74px;
+        }
+        padding: 12px;
+        @include mixins.flexbox($justify: space-between);
+    }
+}
+
+.members {
+    overflow-y: scroll;
+    max-height: 240px;
+
+    .userCont {
+        @include mixins.flexbox($direction: column, $align: start);
+        gap: 5px;
+    }
+
+    .userCard {
+        border-radius: 50px;
+        padding: 5px 20px;
+        width: fit-content;
+
+        &:hover {
+            cursor: pointer;
+            background-color: colors.$bg-color;
+        }
+    }
+}
+
+.userCard {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+}
+
+.addButton {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 50px;
+    padding: 5px 20px;
+    width: fit-content;
+
+    &:hover {
+        cursor: pointer;
+        background-color: colors.$bg-color;
+    }
+}
+
+.buttonCont {
+    padding: 10px 10px 0px 10px;
+}
+
+.closeBtn {
+    padding: 4px;
+    &:hover {
+        path{
+            fill: colors.$purple2
+        }
+        background-color: colors.$bg-color;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+}
+
+.addPeopleCont {
+    flex-direction: column;
+    right: 85px;
+
+    .headline {
+        padding: 0;
+    }
+
+    p,input,button {
+        width: 100%;
+    }
+
+    p {
+        padding: 12px 0px;
+        color: colors.$purple2;
+    }
+
+    input {
+        padding: 12px 20px;
+        border-radius: 50px;
+        border: 1px solid colors.$purple3;
+        outline: unset;
+        &:hover {
+            cursor: pointer;
+            background-color: colors.$bg-color;
+        }
+        &:focus-visible {
+            border: 1px solid colors.$purple2;
+        }
+    }
+
+    .buttonCont {
+        padding-right: 0;
+        @include mixins.flexbox($justify: end);
+        button {
+            width: unset;
+        }
+    }
+
+    form {
+        width: 100%;
+    }
+}
+
+.profileCont {
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 700px;
+
+    .imageCont {
+        @include mixins.flexbox($justify: center);
+        img {
+            height: 200px;
+            width: 200px;
+            border-radius: 100%;
+        }
+    }
+    
+    .nameCont {
+        span {
+            padding: 12px;
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 43.65px;
+        }
+    }
+
+    .mailCont {
+        >div {
+            @include mixins.flexbox($justify: start);
+            gap: 15px;
+        }
+        span {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 27.28px;
+        }
+        p {
+            padding-left: 45px;
+            color: rgba(19, 129, 255, 1);
+        }
+    }
+
+    button {
+        @include mixins.flexbox();
+        gap: 10px;
+    }
+}
+
+.active {
+    background-color: green;
+}
+
+.disabled {
+    background-color: gray;
+}

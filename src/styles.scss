@@ -14,6 +14,7 @@ body {
     width: 100vw;
     max-height: 100vh;
     @include mixins.flexbox(column, flex-start, center);
+    overflow-x: hidden;
 }
 
 @font-face {
@@ -127,3 +128,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       transform: translateX(0);
     }
   }
+
+  h3  {font-family: Nunito;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32.74px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }    

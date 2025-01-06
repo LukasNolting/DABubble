@@ -8,7 +8,7 @@ import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-main',
-  standalone: true, // <-- Add this line
+  standalone: true,
   imports: [
     HeaderComponent,
     BuilderComponent,
@@ -37,6 +37,6 @@ export class MainComponent implements OnInit {
   clearLoadingSpinner() {
     setTimeout(() => {
       this.loadingStatus = false;
-    }, 3000);
+    }, 1500);
   }
 }

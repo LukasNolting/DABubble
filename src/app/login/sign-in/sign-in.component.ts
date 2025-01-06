@@ -29,6 +29,7 @@ export class SignInComponent implements OnInit {
       console.log('User is authenticated, redirecting to /board');
       this.router.navigateByUrl('/board');
     }
+    this.loginError = this.authService.loginError();
   }
 
   async login(ngForm: NgForm): Promise<void> {
@@ -37,8 +38,7 @@ export class SignInComponent implements OnInit {
         await this.authService.login(this.loginData.email, this.loginData.password);
         this.redirectToBoard();
       } catch (error) {
-        this.loginError = 'Login failed. Please check your credentials.';
-        console.error('Login error:', error);
+        this.loginError = 'Falsches Passwort oder E-Mail.. Bitte noch einmal versuchen.';
       }
     }
   }

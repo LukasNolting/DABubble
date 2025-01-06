@@ -6,6 +6,7 @@
     id="messagebox"
     [(ngModel)]="messageContent"
     placeholder="Nachricht an {{ activeChannelName }}..."
+    (keyup)="checkKeyStatus($event, 'mainchat')"
   ></textarea>
   <div class="messagebox__icons-container">
     <div>
@@ -39,6 +40,7 @@
     id="threadmessagebox"
     [(ngModel)]="messageContent"
     placeholder="Antworten..."
+    (keyup)="checkKeyStatus($event, 'threadchat')"
   ></textarea>
 
   <div class="messagebox__icons-container">
