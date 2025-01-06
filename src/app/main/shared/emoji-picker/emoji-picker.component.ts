@@ -12,23 +12,8 @@ import { EmojiComponent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 export class EmojiPickerComponent {
   @Output() emoji = new EventEmitter<string>();
 
-  // onSelectEmoji(emoji: string) {
-  //   const decodedEmoji = this.decodeEmoji(emoji);
-  //   this.selectEmoji.emit(decodedEmoji);
-  // }
-
-  decodeEmoji(emoji: string) {
-    const parser = new DOMParser();
-    const decodedEmoji =
-      parser.parseFromString(emoji, 'text/html').documentElement.textContent ||
-      emoji;
-    return decodedEmoji;
-  }
-
   onSelectEmoji(event: any) {
     const selectedEmoji = event.emoji.native;
-    console.log(event);
-    console.log(selectedEmoji);
     this.emoji.emit(selectedEmoji);
   }
 }

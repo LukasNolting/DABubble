@@ -155,14 +155,14 @@ export class MessageboxComponent implements OnInit, OnDestroy {
     this.emojiPickerOpened = !this.emojiPickerOpened;
   }
 
-  onEmojiPickerClick(event: Event): void {
+  preventPickerClose(event: Event): void {
     event.stopPropagation();
   }
 
-  // @HostListener('document:click', ['$event'])
-  // onDocumentClick(event: Event): void {
-  //   this.emojiPickerOpened = false; 
-  // }
+  @HostListener('document:click', ['$event'])
+  closeEmojiPicker(event: Event): void {
+    this.emojiPickerOpened = false; 
+  }
 
   addEmoji(emoji: string){
     this.messageContent += emoji;
