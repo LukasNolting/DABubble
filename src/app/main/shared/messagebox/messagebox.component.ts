@@ -155,7 +155,7 @@ export class MessageboxComponent implements OnInit, OnDestroy {
     this.emojiPickerOpened = !this.emojiPickerOpened;
   }
 
-  preventPickerClose(event: Event): void {
+  preventEmojiPickerClose(event: Event): void {
     event.stopPropagation();
   }
 

@@ -5,7 +5,7 @@
 } @else { @if (builder == "threadchat") {
 <div class="threadchat__chatbox">
   <!-- @if(emojiPickerOpened){
-  <div class="emoji-picker__wrapper" (click)="onEmojiPickerClick($event)">
+  <div class="emoji-picker__wrapper" (click)="preventEmojiPickerClose($event)">
     <app-emoji-picker (selectEmoji)="addReaction($event)" />
   </div>
   } -->
@@ -13,7 +13,7 @@
     <button
       class="chatbox__addemoji-container"
       (click)="toggleEmojiPicker('fallback')"
-      (click)="onEmojiPickerClick($event)"
+      (click)="preventEmojiPickerClose($event)"
     >
       <div class="chatbox__addemoji__emoji-container">
         <img src="/img/icons/addemoji.svg" alt="" />
@@ -42,7 +42,7 @@
             src="/img/icons/add_reaction.svg"
             alt="Reaktion hinzufügen"
             (click)="toggleEmojiPicker('fallback')"
-            (click)="onEmojiPickerClick($event)"
+            (click)="preventEmojiPickerClose($event)"
           />
         </div>
       </div>
@@ -58,7 +58,7 @@
     [class.chatbox__msg-container__sent]="message.createdBy === activeUserId"
   >
     @if(emojiPickerOpened && emojiPickerOpenedFor === message.docId){
-    <div class="emoji-picker__wrapper emoji-picker__wrapper-20pxright" (click)="onEmojiPickerClick($event)">
+    <div class="emoji-picker__wrapper emoji-picker__wrapper-20pxright" (click)="preventEmojiPickerClose($event)">
       <!-- <app-emoji-picker
         (selectEmoji)="addReaction(message.docId, message.createdBy, $event, true)"
       /> -->
@@ -71,7 +71,7 @@
       <div
         class="chatbox__addemoji__emoji-container"
         (click)="toggleEmojiPicker(message.docId || 'fallback')"
-        (click)="onEmojiPickerClick($event)"
+        (click)="preventEmojiPickerClose($event)"
       >
         <img src="/img/icons/addemoji.svg" alt="" />
       </div>
@@ -185,7 +185,7 @@
         <div
           class="chatbox__addreaction-container"
           (click)="toggleEmojiPicker(message.docId || 'fallback')"
-          (click)="onEmojiPickerClick($event)"
+          (click)="preventEmojiPickerClose($event)"
         >
           <img src="/img/icons/add_reaction.svg" alt="" />
         </div>
@@ -202,7 +202,8 @@
       message.timestamp | date : "longDate"
     }}</span>
     @if(emojiPickerOpened && emojiPickerOpenedFor === message.docId){
-    <div class="emoji-picker__wrapper" (click)="onEmojiPickerClick($event)">
+    <div class="emoji-picker__wrapper" (click)="preventEmojiPickerClose($event)">
+      <app-emoji-picker (emoji)="addEmoji(message.docId, message.createdBy!, $event, false)"/>
       <!-- <app-emoji-picker
         (selectEmoji)="addReaction(message.docId, message.createdBy!, $event, false)"
       /> -->
@@ -215,7 +216,7 @@
   >
     <button
       (click)="toggleEmojiPicker(message.docId || 'fallback')"
-      (click)="onEmojiPickerClick($event)"
+      (click)="preventEmojiPickerClose($event)"
       class="chatbox__addemoji-container"
       [class.chatbox__addemoji__sent]="message.createdBy === activeUserId"
     >
@@ -335,7 +336,7 @@
             <img
               src="/img/icons/add_reaction.svg"
               (click)="toggleEmojiPicker(message.docId || 'fallback')"
-              (click)="onEmojiPickerClick($event)"
+              (click)="preventEmojiPickerClose($event)"
               alt=""
             />
           </div>

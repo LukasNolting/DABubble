@@ -222,13 +222,15 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   toggleEmojiPicker(messageId: string) {
-    this.emojiPickerOpenedFor =
-      this.emojiPickerOpenedFor === messageId ? null : messageId;
-    this.emojiPickerOpened = true;
-    console.log(this.emojiPickerOpened);
+    this.emojiPickerOpened = !this.emojiPickerOpened;
+    if (this.emojiPickerOpened) {
+      this.emojiPickerOpenedFor = messageId;
+    } else {
+      this.emojiPickerOpenedFor = null;
+    }
   }
 
-  onEmojiPickerClick(event: Event): void {
+  preventEmojiPickerClose(event: Event): void {
     event.stopPropagation();
   }
 
@@ -236,11 +238,11 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
   onDocumentClick(event: MouseEvent): void {
     if (this.emojiPickerOpened) {
       this.emojiPickerOpened = false;
-      console.log(this.emojiPickerOpened);
+      this.emojiPickerOpenedFor = null;
     }
   }
 
-  addReaction(
+  addEmoji(
     messageIdOrThreadDocId: string,
     userId: string,
     emoji: string,

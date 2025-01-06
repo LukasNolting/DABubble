@@ -1,7 +1,7 @@
 @if (builder === 'mainchat') {
 <form id="messagebox" class="messagebox-wrapper">
   <textarea
-    (click)="preventPickerClose($event)"
+    (click)="preventEmojiPickerClose($event)"
     class="messagebox"
     name="messagebox"
     id="messagebox"
@@ -12,7 +12,7 @@
   <div class="messagebox__icons-container">
     <div>
       @if(emojiPickerOpened){
-      <div class="emoji-picker__wrapper" (click)="preventPickerClose($event)">
+      <div class="emoji-picker__wrapper" (click)="preventEmojiPickerClose($event)">
         <app-emoji-picker (emoji)="addEmoji($event)" />
       </div>
       }
@@ -20,7 +20,7 @@
         class="icon__add-emoji"
         src="/img/icons/sentiment_satisfied.svg"
         (click)="toggleEmojiPicker()"
-        (click)="preventPickerClose($event)"
+        (click)="preventEmojiPickerClose($event)"
         alt=""
       />
       <img src="/img/icons/alternate_email.svg" alt="" />
@@ -36,7 +36,7 @@
   class="messagebox-wrapper"
 >
   <textarea
-    (click)="preventPickerClose($event)"
+    (click)="preventEmojiPickerClose($event)"
     class="messagebox"
     name="threadmessagebox"
     id="threadmessagebox"
@@ -48,14 +48,14 @@
   <div class="messagebox__icons-container">
     <div>
       @if(emojiPickerOpened){
-      <div class="emoji-picker__wrapper" (click)="preventPickerClose($event)">
+      <div class="emoji-picker__wrapper" (click)="preventEmojiPickerClose($event)">
         <app-emoji-picker (emoji)="addEmoji($event)"/>
       </div>
       }
       <img
         src="/img/icons/sentiment_satisfied.svg"
         (click)="toggleEmojiPicker()"
-        (click)="preventPickerClose($event)"
+        (click)="preventEmojiPickerClose($event)"
         alt=""
       />
       <img src="/img/icons/alternate_email.svg" alt="" />
