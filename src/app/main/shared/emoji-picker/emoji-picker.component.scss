@@ -25,3 +25,8 @@
     cursor: pointer;
   }
 }
+
+
+::ng-deep .chatbox-emoji .emoji-mart-scroll{
+  height: 100px !important;
+}

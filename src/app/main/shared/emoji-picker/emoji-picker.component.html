@@ -1,10 +1,25 @@
+@if (componentName == 'messagebox') {
 <emoji-mart
   set="apple"
   (emojiClick)="onSelectEmoji($event)"
   title="Pick your emoji…"
   emoji="point_up"
+  color="#797EF3"
+  [darkMode]="false"
+  [perLine]="9"
+  [showPreview]="true"
+  [enableSearch]="true"
 ></emoji-mart>
-
-<!-- <ngx-emoji [emoji]="{ id: 'santa', skin: 3 }" size=""></ngx-emoji>
-<ngx-emoji emoji=":santa::skin-tone-3:" size="16"></ngx-emoji>
-<ngx-emoji emoji="santa" set="emojione" size="16"></ngx-emoji> -->
+} @else if (componentName == 'chatbox') {
+  <div class="chatbox-emoji">
+    <emoji-mart
+      set="apple"
+      (emojiClick)="onSelectEmoji($event)"
+      color="#797EF3"
+      [darkMode]="false"
+      [perLine]="9"
+      [showPreview]="false"
+      [enableSearch]="false"
+    ></emoji-mart>
+  </div>
+}

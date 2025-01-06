@@ -22,6 +22,7 @@ import { ChannelsService } from '../../../shared/services/channels.service';
 import { EditmessageComponent } from '../editmessage/editmessage.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EmojiPickerComponent } from '../emoji-picker/emoji-picker.component';
+import { EmojiPickerService } from '../../../shared/services/emoji-picker.service';
 
 @Component({
   selector: 'app-chatbox',
@@ -43,15 +44,16 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
   loadingMessages: WritableSignal<boolean> = signal(true);
   private destroy$ = new Subject<void>();
   loadingAvatars: boolean = false;
-  emojiPickerOpened: boolean = false;
-  emojiPickerOpenedFor: string | null = null;
   selectedEmoji = '';
+  isChatBoxEmojiPickerOpen = false;
+  chatBoxEmojiPickerOpenFor: string | null = null;
 
   constructor(
     private channelsService: ChannelsService,
     private messagesService: MessagesService,
     private authService: AuthService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    public emojiPickerService: EmojiPickerService
   ) {
     this.currentChannel$ = this.channelsService.currentChannel$;
     this.messages$ = this.messagesService.messages$;
@@ -66,6 +68,15 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
     } else if (this.builder === 'threadchat') {
       this.initThreadChat();
     }
+
+    const emojiPickerSubscription =
+      this.emojiPickerService.isChatBoxPickerOpen$.subscribe((open) => {
+        this.isChatBoxEmojiPickerOpen = open;
+      });
+
+    this.emojiPickerService.chatBoxEmojiPickerForId$.subscribe(
+      (id) => (this.chatBoxEmojiPickerOpenFor = id)
+    );
   }
 
   ngAfterViewInit(): void {
@@ -218,11 +229,16 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   toggleEmojiPicker(messageId: string) {
-    this.emojiPickerOpened = !this.emojiPickerOpened;
-    if (this.emojiPickerOpened) {
-      this.emojiPickerOpenedFor = messageId;
+    console.log(messageId);
+    if (this.isChatBoxEmojiPickerOpen) {
+      if (messageId !== this.chatBoxEmojiPickerOpenFor) {
+        this.emojiPickerService.openNewChatBoxEmojiPicker(messageId);
+      } else {
+        this.emojiPickerService.closeChatBoxEmojiPicker();
+      }
     } else {
-      this.emojiPickerOpenedFor = null;
+      this.emojiPickerService.closeMsgBoxEmojiPicker();
+      this.emojiPickerService.openChatBoxEmojiPicker(messageId);
     }
   }
 
@@ -231,10 +247,9 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    if (this.emojiPickerOpened) {
-      this.emojiPickerOpened = false;
-      this.emojiPickerOpenedFor = null;
+  onChatboxDocumentClick(event: MouseEvent): void {
+    if (this.isChatBoxEmojiPickerOpen) {
+      this.emojiPickerService.closeChatBoxEmojiPicker();
     }
   }
 
@@ -277,6 +292,6 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
         console.error('Error adding reaction:', error);
       });
 
-    this.emojiPickerOpened = false;
+    this.emojiPickerService.closeChatBoxEmojiPicker();
   }
 }

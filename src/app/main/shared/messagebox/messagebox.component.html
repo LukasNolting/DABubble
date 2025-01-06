@@ -1,7 +1,7 @@
 @if (builder === 'mainchat') {
 <form id="messagebox" class="messagebox-wrapper">
   <textarea
-    (click)="preventEmojiPickerClose($event)"
+    (click)="preventMsgBoxEmojiPickerClose($event)"
     class="messagebox"
     name="messagebox"
     id="messagebox"
@@ -11,16 +11,22 @@
   ></textarea>
   <div class="messagebox__icons-container">
     <div>
-      @if(emojiPickerOpened){
-      <div class="emoji-picker__wrapper" (click)="preventEmojiPickerClose($event)">
-        <app-emoji-picker (emoji)="addEmoji($event)" />
+      @if (isMessageBoxPickerOpen) {
+      <div
+        class="emoji-picker__wrapper"
+        (click)="preventMsgBoxEmojiPickerClose($event)"
+      >
+        <app-emoji-picker
+          componentName="messagebox"
+          (emoji)="addEmoji($event)"
+        />
       </div>
       }
       <img
         class="icon__add-emoji"
         src="/img/icons/sentiment_satisfied.svg"
         (click)="toggleEmojiPicker()"
-        (click)="preventEmojiPickerClose($event)"
+        (click)="preventMsgBoxEmojiPickerClose($event)"
         alt=""
       />
       <img src="/img/icons/alternate_email.svg" alt="" />
@@ -36,7 +42,7 @@
   class="messagebox-wrapper"
 >
   <textarea
-    (click)="preventEmojiPickerClose($event)"
+    (click)="preventMsgBoxEmojiPickerClose($event)"
     class="messagebox"
     name="threadmessagebox"
     id="threadmessagebox"
@@ -47,15 +53,21 @@
 
   <div class="messagebox__icons-container">
     <div>
-      @if(emojiPickerOpened){
-      <div class="emoji-picker__wrapper" (click)="preventEmojiPickerClose($event)">
-        <app-emoji-picker (emoji)="addEmoji($event)"/>
+      @if (isMessageBoxPickerOpen) {
+      <div
+        class="emoji-picker__wrapper"
+        (click)="preventMsgBoxEmojiPickerClose($event)"
+      >
+        <app-emoji-picker
+          componentName="messagebox"
+          (emoji)="addEmoji($event)"
+        />
       </div>
       }
       <img
         src="/img/icons/sentiment_satisfied.svg"
         (click)="toggleEmojiPicker()"
-        (click)="preventEmojiPickerClose($event)"
+        (click)="preventMsgBoxEmojiPickerClose($event)"
         alt=""
       />
       <img src="/img/icons/alternate_email.svg" alt="" />

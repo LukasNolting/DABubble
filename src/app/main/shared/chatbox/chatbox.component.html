@@ -57,12 +57,9 @@
     class="chatbox__msg-container"
     [class.chatbox__msg-container__sent]="message.createdBy === activeUserId"
   >
-    @if(emojiPickerOpened && emojiPickerOpenedFor === message.docId){
+  @if (isChatBoxEmojiPickerOpen && chatBoxEmojiPickerOpenFor === message.docId){
     <div class="emoji-picker__wrapper emoji-picker__wrapper-20pxright" (click)="preventEmojiPickerClose($event)">
-      <app-emoji-picker (emoji)="addEmoji(message.docId, message.createdBy, $event, true)" />
-      <!-- <app-emoji-picker
-        (selectEmoji)="addReaction(message.docId, message.createdBy, $event, true)"
-      /> -->
+      <app-emoji-picker componentName='chatbox' (emoji)="addEmoji(message.docId, message.createdBy, $event, true)" />
     </div>
     }
     <button
@@ -202,9 +199,9 @@
     <span class="thread__divider-text">{{
       message.timestamp | date : "longDate"
     }}</span>
-    @if(emojiPickerOpened && emojiPickerOpenedFor === message.docId){
+     @if (isChatBoxEmojiPickerOpen && chatBoxEmojiPickerOpenFor === message.docId){
     <div class="emoji-picker__wrapper" (click)="preventEmojiPickerClose($event)">
-      <app-emoji-picker (emoji)="addEmoji(message.docId, message.createdBy!, $event, false)"/>
+      <app-emoji-picker componentName='chatbox' (emoji)="addEmoji(message.docId, message.createdBy!, $event, false)"/>
     </div>
     }
   </div>
