@@ -244,12 +244,12 @@
     [class.chatbox__msg-container__sent]="message.createdBy === activeUserId"
   >
     <button
-      (click)="toggleEmojiPicker(message.docId || 'fallback', false)"
       (click)="preventEmojiPickerClose($event)"
       class="chatbox__addemoji-container"
       [class.chatbox__addemoji__sent]="message.createdBy === activeUserId"
     >
-      <div class="chatbox__addemoji__emoji-container">
+      <div class="chatbox__addemoji__emoji-container"
+        (click)="toggleEmojiPicker(message.docId || 'fallback', false)">
         <img src="/img/icons/addemoji.svg" alt="" />
       </div>
       <div
