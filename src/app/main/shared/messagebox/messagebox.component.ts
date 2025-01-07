@@ -167,18 +167,6 @@ export class MessageboxComponent implements OnInit, OnDestroy {
     }
   }
 
-  // toggleEmojiPicker() {
-  //   if (this.isMessageBoxMainPickerOpen || this.isMessageBoxThreadPickerOpen) {
-  //     this.emojiPickerService.closeMsgBoxEmojiPicker();
-  //   } else {
-  //     if (this.builder === 'mainchat') {
-  //       this.emojiPickerService.openMsgBoxEmojiPickerMain();
-  //     } else if (this.builder === 'threadchat') {
-  //       this.emojiPickerService.openMsgBoxEmojiPickerThread();
-  //     }
-  //   }
-  // }
-
   toggleEmojiPickerMain(){
     if(!this.isMessageBoxMainPickerOpen && !this.isMessageBoxThreadPickerOpen){
       this.emojiPickerService.openMsgBoxEmojiPickerMain();

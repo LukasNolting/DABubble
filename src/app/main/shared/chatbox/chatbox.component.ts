@@ -231,12 +231,15 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
 
   toggleEmojiPicker(messageId: string, displayPickerBottom: boolean) {
     this.displayPickerBottom = displayPickerBottom;
-    if(this.emojiPickerService.isMessageBoxMainPickerOpen$ || this.emojiPickerService.isMessageBoxThreadPickerOpen$){
+    if (
+      this.emojiPickerService.isMessageBoxMainPickerOpen$ ||
+      this.emojiPickerService.isMessageBoxThreadPickerOpen$
+    ) {
       this.emojiPickerService.closeMsgBoxEmojiPickerMain();
-      this.emojiPickerService.closeMsgBoxEmojiPickerThread();   
+      this.emojiPickerService.closeMsgBoxEmojiPickerThread();
     }
-    if(this.isChatBoxEmojiPickerOpen){
-      if (messageId !== this.chatBoxEmojiPickerOpenFor){
+    if (this.isChatBoxEmojiPickerOpen) {
+      if (messageId !== this.chatBoxEmojiPickerOpenFor) {
         this.emojiPickerService.openNewChatBoxEmojiPicker(messageId);
       } else {
         this.emojiPickerService.closeChatBoxEmojiPicker();
