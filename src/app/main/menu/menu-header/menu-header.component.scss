@@ -2,45 +2,40 @@
 @use "../../../../colors.scss" as colors;
 
 
-.menu-header {
-    @include mixins.flexbox(row, flex-start, center, nowrap);
+.menu-header{
+    @include mixins.flexbox(row, flex-start, center ,nowrap);
     width: 100%;
     gap: 15px;
-
-    .menu-header-title {
+    
+    .menu-header-title{
         cursor: default;
         font-weight: 700;
         font-size: 24px;
         line-height: 32.74px;
         @include mixins.flexbox(row, space-between, center, nowrap);
         flex: 1;
-
-        div {
-            @include mixins.flexbox(row, center, center, nowrap);
+        div{
+            @include mixins.flexbox(row, center, center ,nowrap);
             border-radius: 50%;
             width: 40px;
             height: 40px;
             padding: 10px;
-
-            svg {
+            svg{
                 width: 24px;
                 height: 24px;
-                cursor: pointer;
             }
         }
-
-        div:hover {
+        div:hover{
             background-color: colors.$bg-color;
-
-            svg {
-                path {
+            svg{
+                path{
                     fill: colors.$purple;
                 }
             }
         }
     }
-
-    img {
+    img{
         padding: 8px;
     }
 }
+

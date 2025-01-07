@@ -1,34 +1,3 @@
-@if (builder === 'createmessage') {
-  <form id="messagebox" class="messagebox-wrapper">
-    <textarea
-      class="messagebox"
-      name="messagebox"
-      id="messagebox"
-      [(ngModel)]="messageContent"
-      placeholder="Starte eine neue Nachricht"
-      (keyup)="checkKeyStatus($event, 'mainchat')"
-    ></textarea>
-    <div class="messagebox__icons-container">
-      <div>
-        @if(emojiPickerOpened){
-        <div class="emoji-picker__wrapper" (click)="onEmojiPickerClick($event)">
-          <app-emoji-picker (selectEmoji)="addEmoji($event)" />
-        </div>
-        }
-        <img
-          src="/img/icons/sentiment_satisfied.svg"
-          (click)="toggleEmojiPicker()"
-          (click)="onEmojiPickerClick($event)"
-          alt=""
-        />
-        <img src="/img/icons/alternate_email.svg" alt="" />
-      </div>
-  
-      <img (click)="sendMessage()" src="/img/icons/send.svg" alt="" />
-    </div>
-  </form>
-  }
-
 @if (builder === 'mainchat') {
 <form id="messagebox" class="messagebox-wrapper">
   <textarea
