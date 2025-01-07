@@ -1,6 +1,4 @@
-import { Component} from '@angular/core';
-import { SharedService } from '../../../shared/services/newmessage.service';
-
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-menu-header',
@@ -10,20 +8,5 @@ import { SharedService } from '../../../shared/services/newmessage.service';
   styleUrl: './menu-header.component.scss'
 })
 export class MenuHeaderComponent {
-
-
-
-  constructor(private sharedService: SharedService) {
-  }
-
-
-
-  createNewMessage() {
-    // mainchat updaten
-    this.sharedService.updateVariable('createMessagePressed');
-
-  }
-
-
 
 }

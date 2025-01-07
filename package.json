@@ -21,9 +21,9 @@
     "@angular/platform-browser": "18.2.13",
     "@angular/platform-browser-dynamic": "18.2.13",
     "@angular/router": "18.2.13",
+    "@ctrl/ngx-emoji-mart": "^9.2.0",
     "firebase": "^10.14.1",
     "firebase-tools": "^13.29.0",
-    "ngx-easy-emoji-picker": "^0.0.16",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.0"

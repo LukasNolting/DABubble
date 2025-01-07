@@ -1,5 +1,6 @@
 @use './mixins.scss' as mixins;
 @use './colors.scss' as colors;
+@import '@ctrl/ngx-emoji-mart/picker';
 
 * {
     margin: 0;
@@ -129,8 +130,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
   }
 
-  h3  {
-    color: black;
+  h3  {font-family: Nunito;
     font-size: 24px;
     font-weight: 700;
     line-height: 32.74px;
@@ -138,13 +138,3 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
   }    
-
-  h4{
-    color: black;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 24.55px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-  }
