@@ -286,6 +286,7 @@ z-index: 9;
   border-bottom-left-radius: 20px;
   line-height: 24.55px;
   display: block;
+  word-break: break-word;
 }
 
 .chatbox__info {
@@ -335,10 +336,15 @@ z-index: 9;
   display: inline-block;
 }
 
+.chatbox__reaction-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
 .chatbox__emojis-container {
   @include mixins.flexbox(row, flex-start, center, nowrap);
   gap:12px;
-  max-width: 300px;
+  max-width: 180px;
   overflow-x: auto;
 }
 
