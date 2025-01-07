@@ -47,6 +47,7 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
   selectedEmoji = '';
   isChatBoxEmojiPickerOpen = false;
   chatBoxEmojiPickerOpenFor: string | null = null;
+  displayPickerBottom = false;
 
   constructor(
     private channelsService: ChannelsService,
@@ -228,17 +229,19 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  toggleEmojiPicker(messageId: string) {
-    console.log(messageId);
-    if (this.isChatBoxEmojiPickerOpen) {
-      if (messageId !== this.chatBoxEmojiPickerOpenFor) {
+  toggleEmojiPicker(messageId: string, displayPickerBottom: boolean) {
+    this.displayPickerBottom = displayPickerBottom;
+    if(this.emojiPickerService.isMessageBoxMainPickerOpen$ || this.emojiPickerService.isMessageBoxThreadPickerOpen$){
+      this.emojiPickerService.closeMsgBoxEmojiPickerMain();
+      this.emojiPickerService.closeMsgBoxEmojiPickerThread();   
+    }
+    if(this.isChatBoxEmojiPickerOpen){
+      if (messageId !== this.chatBoxEmojiPickerOpenFor){
         this.emojiPickerService.openNewChatBoxEmojiPicker(messageId);
       } else {
         this.emojiPickerService.closeChatBoxEmojiPicker();
       }
     } else {
-      this.emojiPickerService.closeMsgBoxEmojiPickerMain();
-      this.emojiPickerService.closeMsgBoxEmojiPickerThread();
       this.emojiPickerService.openChatBoxEmojiPicker(messageId);
     }
   }
