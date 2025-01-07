@@ -5,26 +5,33 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class EmojiPickerService {
-  private isMessageBoxPickerOpen = new BehaviorSubject<boolean>(false);
+  private isMessageBoxMainPickerOpen = new BehaviorSubject<boolean>(false);
+  private isMessageBoxThreadPickerOpen = new BehaviorSubject<boolean>(false);
   private isChatBoxPickerOpen = new BehaviorSubject<boolean>(false);
   private chatBoxEmojiPickerForId = new BehaviorSubject<string>('');
 
-  isMessageBoxPickerOpen$ = this.isMessageBoxPickerOpen.asObservable();
+  isMessageBoxMainPickerOpen$ = this.isMessageBoxMainPickerOpen.asObservable();
+  isMessageBoxThreadPickerOpen$ =
+    this.isMessageBoxThreadPickerOpen.asObservable();
   isChatBoxPickerOpen$ = this.isChatBoxPickerOpen.asObservable();
   chatBoxEmojiPickerForId$ = this.chatBoxEmojiPickerForId.asObservable();
 
   constructor() {}
 
-  openMsgBoxEmojiPicker() {
-    if (!this.isMessageBoxPickerOpen.getValue()) {
-      this.isMessageBoxPickerOpen.next(true);
-    }
+  openMsgBoxEmojiPickerMain() {
+    this.isMessageBoxMainPickerOpen.next(true);
   }
 
-  closeMsgBoxEmojiPicker() {
-    if (this.isMessageBoxPickerOpen.getValue()) {
-      this.isMessageBoxPickerOpen.next(false);
-    }
+  openMsgBoxEmojiPickerThread() {
+    this.isMessageBoxThreadPickerOpen.next(true);
+  }
+
+  closeMsgBoxEmojiPickerMain() {
+    this.isMessageBoxMainPickerOpen.next(false);
+  }
+  
+  closeMsgBoxEmojiPickerThread() {
+    this.isMessageBoxThreadPickerOpen.next(false);
   }
 
   openChatBoxEmojiPicker(messageId: string) {
@@ -32,7 +39,7 @@ export class EmojiPickerService {
     this.chatBoxEmojiPickerForId.next(messageId);
   }
 
-   openNewChatBoxEmojiPicker(messageId: string){
+  openNewChatBoxEmojiPicker(messageId: string) {
     this.isChatBoxPickerOpen.next(false);
     this.chatBoxEmojiPickerForId.next(messageId);
     this.isChatBoxPickerOpen.next(true);

@@ -237,7 +237,8 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
         this.emojiPickerService.closeChatBoxEmojiPicker();
       }
     } else {
-      this.emojiPickerService.closeMsgBoxEmojiPicker();
+      this.emojiPickerService.closeMsgBoxEmojiPickerMain();
+      this.emojiPickerService.closeMsgBoxEmojiPickerThread();
       this.emojiPickerService.openChatBoxEmojiPicker(messageId);
     }
   }
