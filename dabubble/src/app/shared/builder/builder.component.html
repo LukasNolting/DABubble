@@ -1,0 +1,25 @@
+<div class="builder-container">
+  @for (build of this.builder; track build; let index = $index) {
+  @if (build === "menu") {
+  <!-- @if (menuOpened) { -->
+  <div class="m-height" *ngIf="menuState === 'in' || menuState === 'out'" [@slideAnimationLeft]="menuState"
+    (@slideAnimationLeft.done)="onAnimationDone($event, 'menu')">
+    <app-menu class="menu-container menu-width"></app-menu>
+  </div>
+  <!-- } -->
+  }
+  @if (build === "mainchat") {
+  <app-mainchat [builder]="'mainchat'" class="menu-container mainchat-container"></app-mainchat>
+  }
+  @if (build === "threadchat") {
+  <!-- @if (threadchatOpened) { -->
+  <div class="m-height" *ngIf="threadchatState === 'in' || threadchatState === 'out'"
+    [@slideAnimationRight]="threadchatState" (@slideAnimationRight.done)="onAnimationDone($event, 'threadchat')">
+    <app-threadchat [builder]="'threadchat'" class="menu-container thread-container thread-width"></app-threadchat>
+  </div>
+  <!-- } -->
+  }
+  }
+  <app-menutoggler class="toggleButton" (click)="toggleMenu()"
+    [menuState]="menuOpened ? 'schließen' : 'öffnen'"></app-menutoggler>
+</div>

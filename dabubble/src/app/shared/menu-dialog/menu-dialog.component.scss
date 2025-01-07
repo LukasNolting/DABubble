@@ -1,0 +1,312 @@
+@use "../../../mixins.scss" as mixins;
+@use "../../../colors.scss" as colors;
+@use "../../../button.scss" as button;
+
+
+.dialog-menu-container {
+    @include mixins.flexbox(column, flex-start, flex-start, wrap);
+    background-color: colors.$white;
+    border-radius: 30px 0px 30px 30px;
+    width: 400px;
+    padding: 40px;
+    gap: 15px;
+    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    right: 20px;
+    z-index: 5;
+}
+
+.dialog-channel-container {
+    @include mixins.flexbox(column, flex-start, center, wrap);
+    background-color: colors.$white;
+    border-radius: 0px 30px 30px 30px;
+    padding: 40px;
+    gap: 20px;
+    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    z-index: 5;
+    span{
+        color:colors.$purple3;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 24.55px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+    }
+    p{
+        color: black
+    }
+}
+
+.dialog-members-container {
+    @include mixins.flexbox(column, flex-start, center, nowrap);
+    background-color: colors.$white;
+    border-radius: 30px 0px 30px 30px;
+    padding: 40px;
+    width: fit-content;
+    gap: 15px;
+    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    right: 60px;
+    z-index: 5;
+}
+
+.dialog-header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    img{
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        padding: 4px;
+        box-sizing: content-box;
+        &:hover{
+            background-color: colors.$bg-color;
+        }
+    }
+}
+
+.buttonContainer{
+    width: 100%;
+}
+
+.dialog-channelName{
+    display: flex;  
+    gap: 15px;
+    color: colors.$purple3;
+}
+
+
+h3 {
+    color: black;
+    text-wrap: nowrap;
+}
+
+img{
+    cursor: pointer;
+}
+
+input {
+    width: 100%;
+    border-radius: 30px;
+    border: 1px solid colors.$light-purple;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.55px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    z-index: 5;
+    &:focus {
+        border: 1px solid colors.$light-purple;
+        outline: none;
+    }
+}
+
+.addMember{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 15px;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 30px 0 20px;
+    :hover{
+        color: colors.$purple3;
+    }
+    svg{
+        background-color: rgb(236, 238, 254);
+        border-radius: 20px;
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+        position: relative;
+            path{
+                fill: colors.$purple3;
+            }
+    }
+
+}
+
+.dialog-scrollContainer{
+    overflow: scroll;
+    max-height: 310px;
+    .avatar-box {
+        height: 50px;
+        width: 50px;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+}
+
+.channel-box{
+    width: 400px;
+    gap: 10px;
+    height: 58px;
+    @include mixins.flexbox(row, flex-start, center, nowrap);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 24.55px;
+    border-radius: 29px;
+    padding: 0 30px 0 20px;
+}
+.channel-box:hover{ 
+    background-color: colors.$bg-color;
+    svg{
+        path{
+            fill: colors.$purple3;
+        }
+    }
+}  
+.channel-box:active {
+    color: colors.$purple3;
+    font-weight: 700;
+    svg{
+        path{
+            fill: colors.$purple3;
+        }
+    }
+}
+
+hr {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.edit-dialog-channelName{
+    position: relative;
+    display: flex;
+    width: 792px;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 0px;
+    transition: 250ms ease-in-out;
+    input{
+        border: none;
+        
+    }
+    :first-child{
+        display:flex;
+        justify-content: space-between;
+        transition: 250ms ease-in-out;
+        span{
+            z-index: 5;
+            cursor: pointer;
+            padding: 0;
+        }
+    }
+    :last-child{
+        display:flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+        padding: 0 20px;
+        p{
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 24.55px;
+            text-align: left;
+            text-underline-position: from-font;
+            text-decoration-skip-ink: none;
+        }
+    }
+}
+
+.edit-dialog-channelDescription{
+    position: relative;
+    display: flex;
+    width: 792px;
+    height: 264px;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    transition: 150ms ease-in-out;
+    input{
+        padding: 15px 20px 15px 40px;
+    }
+    h4{
+        transition: 150ms ease-in-out;
+    }
+    :first-child{
+        display:flex;
+        justify-content: space-between;
+        span{
+            z-index: 5;
+            cursor: pointer;
+        }
+    }
+    p{
+        width: 100%;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 24.55px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+    }
+    :last-child{
+        display:flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        p{
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 24.55px;
+            text-align: left;
+            text-underline-position: from-font;
+            text-decoration-skip-ink: none;
+        }
+        span{
+            color: colors.$purple3;
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 32.74px;
+            text-align: left;
+            text-underline-position: from-font;
+            text-decoration-skip-ink: none;
+            z-index: 5;
+        }
+    }
+}
+
+.animation-border-channelName{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 6px;
+    border-radius: 30px;
+    border: 1px solid colors.$light-purple;
+    transition: 250ms ease-in-out;
+}
+
+.animation-border-channelDescription{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 6px;
+    border-radius: 30px;
+    border: 1px solid colors.$light-purple;
+    transition: 250ms ease-in-out;
+}
+
+.editChannelDescription{
+    height: 60px;
+}
+
+.buttonContainer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
