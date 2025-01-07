@@ -5,34 +5,80 @@
     [(ngModel)]="searchText"
     (input)="onInputChange()"
   />
+  @if (searchText) {
+  <button>
+    <img src="img/icons/close-grey.svg" alt="Schließen" (click)="clearSearch()" />
+  </button>
+  } @else {
   <button><img src="img/icons/search.svg" alt="Suche" /></button>
+  }
 </div>
 
-@if (isSearchActive && searchResults.length > 0) {
+@if (isSearchActive) {
 <div class="feedback-wrapper">
+  <div class="feedback-main">
+  @if (messageResults.length > 0) {
   <div class="feedback-container">
-    <div class="feedback-box" *ngFor="let result of searchResults">
-      <span>{{ result.creatorName }}</span>
-      <span>{{ result.message }}</span>
-      <span>{{ result.timestamp.seconds | timestampToDate }}</span>
+    <h3>{{ messageResults.length }} Nachricht(en) gefunden:</h3>
+    <div class="feedback-message-container">
+      <div
+        class="feedback-box"
+        *ngFor="let result of messageResults"
+        (click)="goToSearchResult(result.channelId, result.docId, null)"
+      >
+        <img
+          src="{{ result.creatorPhotoURL }}"
+          alt="img/avatars/picPlaceholder.svg"
+        />
+        <div class="feedback-message">
+          <div class="feedback-message-header">
+            <span>{{ result.creatorName }}</span>
+            <span style="font-style: italic">{{
+              result.timestamp.seconds | timestampToDate
+            }}</span>
+          </div>
+          <span>{{ result.message }}</span>
+        </div>
+      </div>
     </div>
   </div>
+  } @if (userResults.length > 0) {
+  <div class="feedback-container">
+    <h3>{{ userResults.length }} Benutzer gefunden:</h3>
+    <div class="feedback-message-container">
+      <div
+        class="feedback-box"
+        *ngFor="let user of userResults"
+        (click)="goToSearchResult(null, null, user.userId)"
+      >
+        <img src="{{ user.photoURL }}" alt="img/avatars/picPlaceholder.svg" />
+        <div class="feedback-message">
+          <div class="feedback-message-header">
+            <span>{{ user.name }}</span>
+                  <div class="feedback-user-status-container">
+        <div class="feedback-user-status" [ngStyle]="{'background-color': user.status ? '#92c83e' : '#696969'}"></div>
+        @if (user.status) {
+        <span style="color:#92c83e">Aktiv</span>
+        } @else {
+        <span style="color:#696969">Offline</span>
+        }
+      </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  }
 </div>
-} @else if (isSearchActive && searchResults.length === 0) {
-<div class="feedback-wrapper">
-  <div class="feedback-container">
-    <div class="feedback-box">
-      <span>Keine Ergebnisse gefunden</span>
-    </div>
-  </div>
 </div>
-}
-@else if (isSearchTouched){
-<div class="feedback-wrapper">
-  <div class="feedback-container">
-    <div class="feedback-box">
-      <span>Bitte gib mindestens 4 Zeichen ein</span>
-    </div>
-  </div>
+} @if (isSearchActive && (userResults.length === 0 && messageResults.length ===
+0)) {
+<div class="feedback-wrapper feedback-wrapper-error">
+  <span>Keine Ergebnisse gefunden</span>
+</div>
+} @if (isSearchTouched && searchText.length < 4) {
+<div class="feedback-wrapper feedback-wrapper-error">
+  <span>Bitte gib mindestens 4 Zeichen ein</span>
 </div>
 }

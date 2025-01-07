@@ -57,10 +57,53 @@
 </div>
 }
 @if (this.channelDialog && !this.menuDialog && !this.membersDialog) {
-<div class="dialog-channel-container" (click)="dontCloseDialog($event)">
+<div class="dialog-channel-container">
     <div class="dialog-header">
         <h3># {{dialogData.name}}</h3>
         <img src="/img/icons/close.svg" alt="close" (click)="closeDialog($event, 'channelDialog')" />
+    </div>
+    <div class="edit-dialog-channelName">
+        <div [ngStyle]="{'padding': editChannelName ? '0 0 30px 0' : '30px 20px 0 20px'}">
+            <h4>Channel-Name</h4>
+            @if (!editChannelName) {
+                <span (click)="activateEditChannelName()">Bearbeiten</span>
+            } @else {
+                <span (click)="activateEditChannelName()">Speichern</span>
+            }
+        </div>
+        <div [ngStyle]="{'height': editChannelName ? '60px' : '114px'}" class="animation-border-channelName"></div>
+        <div>
+            <h3 >#</h3>
+            @if (!editChannelName) {
+                <p>{{dialogData.name}}</p>
+            } @else {
+                <input #channelInput type="text" placeholder="{{dialogData.name}}" />
+            }
+        </div>
+    </div>
+    <div class="edit-dialog-channelDescription" [ngStyle]="{'padding': editChannelDescription ? '0 0 0 0' : '20px 20px'}">
+        <div>
+            <h4>Beschreibung</h4>
+            @if (!editChannelDescription) {
+                <span (click)="activateEditChannelDescription()">Bearbeiten</span>
+            } @else {
+                <span (click)="activateEditChannelDescription()">Speichern</span>
+            }
+        </div>
+        @if (editChannelDescription) {
+            <input #channelDescInput type="text" placeholder="{{dialogData.description}}" [ngStyle]="{'margin-bottom': editChannelDescription ? '10px' :'0'}" />
+        } @else {
+            <p class="editChannelDescription">{{dialogData.description}}</p>
+        }
+        <hr>
+        <h4  [ngStyle]="{'padding': !editChannelDescription ? '0 0 0 0' : '20px 0 0 0'}">Erstellt von</h4>
+        <div [ngStyle]="{'opacity': !editChannelDescription ? '1' : '0'}" class="animation-border-channelDescription"></div>
+        <div>
+            <span>{{ dialogData.creator }}</span>
+        </div>
+    </div>
+    <div class="buttonContainer">
+        <button class="save default">Channel verlassen</button>
     </div>
 </div>
 }

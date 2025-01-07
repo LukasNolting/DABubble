@@ -29,7 +29,7 @@ export class MainchatHeaderComponent {
   membersDialog: boolean = false;
   channelDialog: boolean = false;
   dialogData: any = null;
-
+  channelCreator: string = '';
 
   constructor(private channelsService: ChannelsService, private authService: AuthService, private cdr: ChangeDetectorRef) {
     this.channel = this.channelsService.currentChannel$;  
@@ -40,13 +40,23 @@ export class MainchatHeaderComponent {
     this.channel.subscribe((channel) => {
       if (channel) {
         this.channelTitle = channel.name;
+  
+        // Lade Mitglieder-Avatare
         const members = channel.members.map((memberId) => ({
           id: memberId,
           photoURL: this.authService.avatarCache.get(memberId),
+          createdBy: channel.createdBy
         }));
         this.loadMemberAvatars(members).then((memberAvatars) => {
           this.channelMembers = memberAvatars;
           this.loading = false;
+        });
+  
+        // Lade den Channel-Creator
+        this.authService.getUsernamesByIds([channel.createdBy]).then((creatorDetails) => {
+          if (creatorDetails) {
+            this.channelCreator = creatorDetails[0].name; // Name des Erstellers setzen
+          }
         });
       }
     });
@@ -100,7 +110,13 @@ export class MainchatHeaderComponent {
 
   openDialog(menu: string) {
     this.closeAllDialogs();
-    this.dialogData = { name: this.channelTitle, members: this.channelMembers };
+  
+    this.dialogData = {
+      name: this.channelTitle,
+      members: this.channelMembers,
+      creator: this.channelCreator,
+    };
+  
     if (menu === 'membersDialog') {
       console.log(this.dialogData.members);
       this.membersDialog = true;
@@ -111,7 +127,7 @@ export class MainchatHeaderComponent {
     }
     this.cdr.detectChanges();
   }
-
+  
 
   closeAllDialogs() {
     this.menuDialog = false;

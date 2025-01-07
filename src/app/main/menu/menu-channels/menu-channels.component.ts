@@ -5,6 +5,7 @@ import { Channel } from '../../../models/channel';
 import { ChannelsService } from '../../../shared/services/channels.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddchatComponent } from '../../addchat/addchat.component';
+import { SharedService } from '../../../shared/services/newmessage.service';
 
 @Component({
   selector: 'app-menu-channels',
@@ -26,6 +27,7 @@ export class MenuChannelsComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private dialog: MatDialog,
     public channelsService: ChannelsService,
+    private sharedService: SharedService,
   ) {
     this.channelForm = this.fb.group({
       name: ['', Validators.required],
@@ -65,6 +67,9 @@ export class MenuChannelsComponent implements OnInit, OnDestroy {
   }
 
   selectChannel(channelId: string): void {
+    // neue nachricht deaktivieren
+    this.sharedService.updateVariable('false');
+
     this.channelsService.selectChannel(channelId)
   }
 }

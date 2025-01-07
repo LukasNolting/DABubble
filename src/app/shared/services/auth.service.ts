@@ -33,6 +33,7 @@ import {
 import { Router } from '@angular/router';
 import { UserModel } from '../../models/user';
 import { ToastMessageService } from './toastmessage.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -447,14 +448,19 @@ export class AuthService {
   /**
    * Alle Benutzer aus Firestore laden
    */
-  private getUserList(): void {
-    const userCollection = collection(this.firestore, 'users');
-    onSnapshot(userCollection, (snapshot) => {
-      const users: UserModel[] = [];
-      snapshot.forEach((doc) => {
-        users.push(doc.data() as UserModel);
+  public getUserList(): Observable<UserModel[]> {
+    return new Observable((observer) => {
+      const userCollection = collection(this.firestore, 'users');
+      onSnapshot(userCollection, (snapshot) => {
+        const users: UserModel[] = [];
+        snapshot.forEach((doc) => {
+          users.push(doc.data() as UserModel);
+        });
+        this.userList.set(users);
+        observer.next(users);
+      }, (error) => {
+        observer.error(error);
       });
-      this.userList.set(users);
     });
   }
 

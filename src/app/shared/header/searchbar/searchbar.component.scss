@@ -48,9 +48,12 @@ img {
 .feedback-wrapper {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   position: absolute;
+  min-height: 60px;
+  max-height: 350px;
+  flex-direction: column;
   top: 68px;
   left: 0;
   right: 0;
@@ -61,21 +64,40 @@ img {
   background-color: colors.$white;
 }
 
+.feedback-main {
+  width: 100%;
+  overflow-y: scroll;
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.feedback-wrapper-error {
+  justify-content: center;
+      color: colors.$grey;
+}
+
+.feedback-user-status-container{
+  display: flex;
+  gap:5px;
+}
+
+.feedback-user-status{
+        height: 16px;
+      width: 16px;
+      border-radius: 50%;
+}
+
 .feedback-container {
   width: 100%;
   z-index: 4;
-  margin: 30px 0;
-  max-height: 400px;
-  overflow-y: scroll;
-  color: #f50000;
-  gap: 8px;
   padding: 2px 20px;
-  @include mixins.flexbox(row, center, center);
-  max-width: 1440px;
   border-radius: 30px;
 
   .feedback-box {
     opacity: 1;
+    @include mixins.flexbox(row, flex-start, flex-start);
     color: colors.$grey;
     box-sizing: border-box;
     padding: 10px;
@@ -84,10 +106,44 @@ img {
     width: 100%;
     z-index: 4;
     cursor: pointer;
-    @include mixins.flexbox(column, flex-start, flex-start);
+    gap: 10px;
+
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+    &:hover {
+      background-color: colors.$bg-color;
+    }
+  }
+  .feedback-message-header {
+    @include mixins.flexbox(row, space-between, center);
+    width: 100%;
+  }
+  .feedback-message {
+    @include mixins.flexbox(column, space-evenly, flex-start, nowrap);
+    flex: 1;
+    height: 60px;
+    overflow-y: scroll;
+    gap: 4px;
+    word-break: break-word;
+    padding-right: 5px;
   }
 }
 
+h3 {
+  font-size: 20px;
+  color: colors.$grey;
+  text-align: start;
+}
+
+.feedback-message-container {
+  @include mixins.flexbox(column, flex-start, flex-start);
+  gap: 10px;
+  width: 100%;
+}
+
 ::-webkit-scrollbar {
-    width: 5px !important;
-  }
+  width: 5px !important;
+}

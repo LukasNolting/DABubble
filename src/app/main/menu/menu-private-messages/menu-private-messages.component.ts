@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChannelsService } from '../../../shared/services/channels.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Channel } from '../../../models/channel';
+import { SharedService } from '../../../shared/services/newmessage.service';
 
 @Component({
   selector: 'app-menu-private-messages',
@@ -27,6 +28,7 @@ export class MenuPrivateMessagesComponent {
     private fb: FormBuilder,
     private dialog: MatDialog,
     public channelsService: ChannelsService,
+    private sharedService: SharedService,
     ) {
       this.channelForm = this.fb.group({
         name: ['', Validators.required],
@@ -72,6 +74,9 @@ export class MenuPrivateMessagesComponent {
   
 
     selectChannel(channelId: string): void {
+      // neue nachricht uU ausblenden
+      this.sharedService.updateVariable('false');
+
       this.channelsService.selectChannel(channelId)
     }
 
