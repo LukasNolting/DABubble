@@ -76,19 +76,19 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewInit {
       this.initThreadChat();
     }
 
-    const emojiSubscription1 = this.emojiPickerService.isChatBoxPickerOpen$.subscribe((open) => {
+    const emojiSubscriptionOpen = this.emojiPickerService.isChatBoxPickerOpen$.subscribe((open) => {
       this.isChatBoxEmojiPickerOpen = open;
       this.cdRef.markForCheck();
     });
 
-    const emojiSubscription2 = this.emojiPickerService.chatBoxEmojiPickerForId$.subscribe((id) => {
+    const emojiSubscriptionMessage = this.emojiPickerService.chatBoxEmojiPickerForId$.subscribe((id) => {
       this.chatBoxEmojiPickerOpenFor = id;
       this.cdRef.markForCheck();
     });
 
     this.destroyRef.onDestroy(() => {
-      emojiSubscription1.unsubscribe();
-      emojiSubscription2.unsubscribe();
+      emojiSubscriptionOpen.unsubscribe();
+      emojiSubscriptionMessage.unsubscribe();
     })
   }
 
