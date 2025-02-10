@@ -22,11 +22,13 @@ import { EmojiPickerComponent } from '../emoji-picker/emoji-picker.component';
 import { EmojiPickerService } from '../../../shared/services/emoji-picker.service';
 import { Channel } from '../../../models/channel';
 import { firstValueFrom } from 'rxjs';
+import { MentionService } from '../../../shared/services/mention.service';
+import { MentionComponent } from '../mention/mention.component';
 
 @Component({
   selector: 'app-messagebox',
   standalone: true,
-  imports: [CommonModule, FormsModule, EmojiPickerComponent],
+  imports: [CommonModule, FormsModule, EmojiPickerComponent, MentionComponent],
   templateUrl: './messagebox.component.html',
   styleUrls: ['./messagebox.component.scss'], // Korrektur: "styleUrl" zu "styleUrls"
   changeDetection: ChangeDetectionStrategy.Default,
@@ -46,6 +48,7 @@ export class MessageboxComponent implements OnInit, OnDestroy {
   isMessageBoxThreadPickerOpen: boolean = false;
   isMessageBoxCreateMessagePickerOpen: boolean = false;
   members: any = [];
+  mentionPicker:boolean = false;
 
   constructor(
     private userService: UserService,
@@ -53,7 +56,8 @@ export class MessageboxComponent implements OnInit, OnDestroy {
     private messagesService: MessagesService,
     private authService: AuthService,
     public emojiPickerService: EmojiPickerService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    public mentionService: MentionService,
   ) { }
 
   ngOnInit(): void {
@@ -351,6 +355,9 @@ export class MessageboxComponent implements OnInit, OnDestroy {
       this.emojiPickerService.closeMsgBoxEmojiPickerThread();
     }
   }
+  closeMentionPicker(event: Event) {
+    this.mentionPicker = false;
+  }
 
   addEmoji(emoji: string) {
     this.messageContent += emoji;
@@ -366,6 +373,24 @@ export class MessageboxComponent implements OnInit, OnDestroy {
         this.sendThreadMessage();
       }
     }
+    if (event.getModifierState('AltGraph') && event.key == "q") {
+      this.mentionPicker = true;
+    }
+    if (event.key == "Backspace") {
+      this.mentionPicker = false;
+    }
+  }
+
+  toogleMentionPicker() {
+    if (this.mentionPicker) {
+      this.mentionPicker = false;
+    } else {
+      this.mentionPicker = true;
+    }
+  }
+
+  preventMsgBoxMentionPickerClose(event: Event): void {
+    event.stopPropagation();
   }
   
 }

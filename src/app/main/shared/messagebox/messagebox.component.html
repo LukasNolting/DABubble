@@ -11,7 +11,7 @@
           <div class="emoji-picker__wrapper" (click)="preventMsgBoxEmojiPickerClose($event)">
             <app-emoji-picker componentName="messagebox" (emoji)="addEmoji($event)" />
           </div>
-          }
+        }
         <img class="icon__add-emoji" src="/img/icons/sentiment_satisfied.svg" (click)="toggleEmojiPickerCreateMessage()"
         (click)="preventMsgBoxEmojiPickerClose($event)" alt="" />
       <img (click)="jumpToAtAbove()" src="/img/icons/alternate_email.svg" alt="" />
@@ -31,8 +31,14 @@
         <app-emoji-picker componentName="messagebox" (emoji)="addEmoji($event)" />
       </div>
       }
+      @if (mentionPicker) {
+        <div class="mention-picker__wrapper" (click)="preventMsgBoxMentionPickerClose($event)">
+          <app-mention></app-mention>
+        </div>
+      }
       <img class="icon__add-emoji" src="/img/icons/sentiment_satisfied.svg" (click)="toggleEmojiPickerMain()"
         (click)="preventMsgBoxEmojiPickerClose($event)" alt="" />
+      <img src="/img/icons/alternate_email.svg" (click)="toogleMentionPicker()" alt="erwähnen">
     </div>
     <img (click)="sendMessage()" src="/img/icons/send.svg" alt="" />
   </div>
@@ -51,8 +57,14 @@
         <app-emoji-picker componentName="messagebox" (emoji)="addEmoji($event)" />
       </div>
       }
+      @if (mentionPicker) {
+        <div class="mention-picker__wrapper" (click)="preventMsgBoxMentionPickerClose($event)">
+          <app-mention></app-mention>
+        </div>
+      }
       <img src="/img/icons/sentiment_satisfied.svg" (click)="toggleEmojiPickerThread()"
         (click)="preventMsgBoxEmojiPickerClose($event)" alt="" />
+      <img src="/img/icons/alternate_email.svg" (click)="toogleMentionPicker()" alt="erwähnen">
     </div>
     <img (click)="sendThreadMessage()" src="/img/icons/send.svg" alt="" />
   </div>
