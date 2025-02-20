@@ -1,0 +1,24 @@
+name: Clone and Push Worktree
+
+on:
+  push:
+    branches: 
+      "marcel_z"
+
+jobs:
+  clone_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        repository: user/source-repo
+        ref: marcel_private
+
+    - name: Add worktree and push to target repository
+      run: |
+        git worktree add /tmp/worktree
+        cd /tmp/worktree
+        # git remote add target-repo https://${{ secrets.TARGET_REPO_TOKEN }}@https://github.com/MarcelZalec/DaBubbleTest
+        git remote add target-repo https://github.com/user/target-repo.git
+        git push target-repo marcel_private:target-branch
