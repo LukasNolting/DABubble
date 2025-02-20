@@ -12,13 +12,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        repository: MarcelZalec/DaBubbleTest.git
+        repository: MarcelZalec/DaBubbleTest
         ref: marcel_private
 
     - name: Add worktree and push to target repository
       run: |
         git worktree add /tmp/worktree
         cd /tmp/worktree
-        git remote add target-repo https://${{ secrets.TARGET_REPO_TOKEN }}@github.com/MarcelZalec/DaBubbleTest.git
+        git remote add target-repo https://${{ secrets.TARGET_REPO_TOKEN }}@github.com/MarcelZalec/DaBubbleTest
         # git remote add target-repo https://github.com/user/target-repo.git
         git push target-repo DaBubbleTest:main
